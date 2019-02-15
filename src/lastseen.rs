@@ -9,7 +9,7 @@ pub struct LastSeen {
 }
 
 impl LastSeen {
-    pub fn new(path: &str) -> Result<LastSeen, Box<Error>> {
+    pub fn new(path: &str) -> Result<LastSeen, Box<dyn Error>> {
         let file = fs::OpenOptions::new().read(true)
                                          .write(true)
                                          .create(true)
@@ -36,7 +36,7 @@ impl LastSeen {
         self.map.get(feed).map(|x| x.as_str())
     }
 
-    pub fn set_last_seen(&mut self, feed: &str, item_url: &str) -> Result<(), Box<Error>> {
+    pub fn set_last_seen(&mut self, feed: &str, item_url: &str) -> Result<(), Box<dyn Error>> {
         self.map.insert(feed.to_owned(), item_url.to_owned());
         self.file.set_len(0)?;
         self.file.seek(io::SeekFrom::Start(0))?;

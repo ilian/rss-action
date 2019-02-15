@@ -1,15 +1,15 @@
 mod lastseen;
-extern crate clap;
-extern crate rss;
+
+use rss;
 
 use std::fs;
 use std::process;
 use std::io::{BufReader, BufRead};
 use std::iter::Iterator;
-use lastseen::LastSeen;
+use self::lastseen::LastSeen;
 use clap::{Arg, App};
 
-fn main() -> Result<(), Box<std::error::Error>> {
+fn main() -> Result<(), Box<dyn std::error::Error>> {
     let matches = App::new("rss-action")
                     .version("0.1.0")
                     .author("nocent <nocent@protonmail.ch>")
