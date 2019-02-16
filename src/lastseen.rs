@@ -50,9 +50,9 @@ impl LastSeen {
         let mut idx = 0;
         if let Some(last_seen_url) = self.get_last_seen(feed) {
             if let Some(last_idx) = item_urls.iter().position(|x| x == &last_seen_url) {
-                idx = last_idx;
+                idx = last_idx + 1;
             }
         }
-        &item_urls[idx+1..]
+        &item_urls[idx..]
     }
 }
